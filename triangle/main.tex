@@ -1,0 +1,113 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[OT1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usepackage{cancel}
+\begin{document}
+
+Дан равносторонний треугольник $\triangle ABC, AB=BC=AC=l$ и точка $O$, $\|OA\|=a$, $\|OB\|=b$, $\|OC\|=c$.
+
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(5,0){B}
+\tkzInterCC(A,B)(B,A)\tkzGetPoints(C)
+\tkzDrawSegments(A,B B,C A,C)
+\tkzDefPoint(7,1){O}
+\tkzDrawPoints(A,B,C,O)
+\tkzLabelPoints(A,B,C,O)
+\tkzLabelSegment[below](A,B){$l$}
+\tkzDrawSegment[color=red](A,O)\tkzLabelSegment(A,O){$a$}
+\tkzDrawSegment[color=red](B,O)\tkzLabelSegment(B,O){$b$}
+\tkzDrawSegment[color=red](C,O)\tkzLabelSegment(C,O){$c$}
+\end{tikzpicture}
+
+Точка $O$ -- также уникальная точка пересечения трех окружностей с центрами в $A$, $B$, $C$ и радиусами $a$, $b$, $c$ соответственно. Построим эти окружности.
+
+Также введем систему координат $\{A;\vec{x};\vec{y}\}$ так, что $\vec{x} \upuparrows \vec{AB}$, $\vec{y} \perp \vec{x}$, $\cos \widehat{\vec{y}; \vec{AC}} >0$.
+
+
+\begin{tikzpicture}
+
+\tkzDefPoint(0,0){A}
+\tkzDefPoint(5,0){B}
+\tkzDefPoint(1,0){x}
+\tkzDefPoint(0,-1){y}
+
+\tkzInterCC(A,B)(B,A)\tkzGetPoints(C)
+\tkzDrawSegments(A,B B,C A,C)
+\tkzDefPoint(7,1){O}
+\tkzDrawPoints(A,B,C,O)
+\tkzLabelPoints(A,B,C,O)
+\tkzLabelSegment[below](A,B){$l$}
+\tkzDrawSegment[color=red](A,O)\tkzLabelSegment(A,O){$a$}
+\tkzDrawSegment[color=red](B,O)\tkzLabelSegment(B,O){$b$}
+\tkzDrawSegment[color=red](C,O)\tkzLabelSegment(C,O){$c$}
+
+\tkzDrawCircle[color=blue](A,O)
+\tkzDrawCircle[color=blue](B,O)
+\tkzDrawCircle[color=blue](C,O)
+
+\tkzDrawSegment[color=green](A,x)
+\tkzDrawSegment[color=green](A,y)
+
+
+\end{tikzpicture}
+
+Поскольку $O$ находится на пересечении трех окружностей, она также задается тремя уравнениями окружности. Дальше следуют алгебраические преобразования (часть из которых сделана с помощью Wolfram|Alpha).
+
+$\begin{cases}
+a^2 = x^2 + y^2\\
+b^2=(x-l)^2 + y^2\\
+c^2 = (x-0.5l)^2 + (y-\frac{\sqrt{3}}{2}l) ^ 2
+\end{cases}$
+
+$\begin{cases}
+a^2 = x^2 + y^2\\
+b^2-a^2=\cancel{x^2}-2xl+l^2 + \cancel{y^2}-\cancel{(x^2+y^2)}\\
+c^2 = x^2-xl+0.25l^2 + y^2-\sqrt{3}yl+0.75l^2 = x^2+y^2+l^2-xl-\sqrt{3}yl
+\end{cases}$
+
+$\begin{cases}
+a^2 = x^2 + y^2\\
+b^2-a^2=-2xl+l^2\\
+c^2 =  a^2+l^2-xl-\sqrt{3}yl
+\end{cases}$
+
+$\begin{cases}
+a^2 = x^2 + y^2\\
+(b-a)(b+a)=l^2-2xl \Rightarrow x = \frac{a^2 - b^2 + l^2}{2 l} \Downarrow \\
+c^2 = a^2+l(l-x-\sqrt{3}y) \Leftarrow c^2 = a^2+l(l-\frac{a^2 - b^2 + l^2}{2 l}-\sqrt{3}y)
+\end{cases}$
+
+$\begin{cases}
+a^2 = x^2 + y^2\\
+x = \frac{a^2 - b^2 + l^2}{2 l}  \\
+c^2 = a^2+l(l-\frac{a^2 - b^2 + l^2}{2 l}-\sqrt{3}y) \Rightarrow y = \frac{a^2 + b^2 - 2 c^2 + l^2}{2 \sqrt{3} l}
+\end{cases}$
+
+$\begin{cases}
+a^2 = (\frac{a^2 - b^2 + l^2}{2 l})^2 + (\frac{a^2 + b^2 - 2 c^2 + l^2}{2 \sqrt{3} l})^2\\
+x = \frac{a^2 - b^2 + l^2}{2 l}  \\
+y = \frac{a^2 + b^2 - 2 c^2 + l^2}{2 \sqrt{3} l}
+\end{cases}$
+
+$a^2 = (\frac{a^2 - b^2 + l^2}{2 l})^2 + (\frac{a^2 + b^2 - 2 c^2 + l^2}{2 \sqrt{3} l})^2$
+
+$a^2 = \frac{(a^2 - b^2 + l^2)^2}{4 l^2} + \frac{(a^2 + b^2 - 2 c^2 + l^2)^2}{12 l^2}$
+
+$a^2 = \frac{3 (a^2 - b^2 + l^2)^2 + (a^2 + b^2 - 2 c^2 + l^2)^2}{12 l^2}$
+
+$a^2 = \frac{\cancel{4} (a^4 - a^2 b^2 - a^2 c^2  + b^4 - b^2 c^2 + c^4 + l^2(2 a^2 - b^2 - c^2 + l^2) )}{\cancelto{3}{12}\qquad l^2}$
+
+$a^2 = \frac{(a^4 - a^2 b^2 - a^2 c^2  + b^4 - b^2 c^2 + c^4)}{3 l^2} + 2 a^2 - b^2 - c^2 + l^2$
+
+\begin{large}
+	$$a^4 + b^4 + c^4 + 3 l^4 = a^2 (b^2 + c^2 - 3 l^2) + 3 l^2 (b^2 + c^2) + b^2 c^2$$
+\end{large}
+\end{document}
