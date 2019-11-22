@@ -1,0 +1,9 @@
+[package]
+name = "bignum"
+version = "0.1.0"
+authors = ["Danya Generalov <danya@danya02.ru>"]
+edition = "2018"
+
+[dependencies]
+num-traits = "0.2"
+num-bigint = "0.2"
