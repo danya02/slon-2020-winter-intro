@@ -2,6 +2,8 @@
 
 AKA "Bring Your Own Planet".
 
+![image](render.png)
+
 This is the second time there's been a surface-coloring task at Slon.
 I was aware of the fact that it is impossible to color a torus into more than 7 segments in this way, but I didn't know how it could be done.
 
